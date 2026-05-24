@@ -62,7 +62,10 @@ namespace WowPacketParser.Misc
 
         public override string ToString()
         {
-            return "X: " + X + " Y: " + Y + " Z: " + Z;
+            string sx = string.Format("{0:F20}", X).Substring(0, 20).TrimEnd('0').TrimEnd('.');
+            string sy = string.Format("{0:F20}", Y).Substring(0, 20).TrimEnd('0').TrimEnd('.');
+            string sz = string.Format("{0:F20}", Z).Substring(0, 20).TrimEnd('0').TrimEnd('.');
+            return string.Format("X: {0} Y: {1} Z: {2}", sx, sy, sz);
         }
 
         public bool Equals(Vector3 other)
