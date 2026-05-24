@@ -248,7 +248,14 @@ namespace WowPacketParser.Misc
                 return obj;
 
             Writer ??= new StringBuilder();
-            Writer.AppendObjectPropertyPath(indexes).Append(name).Append(": ").Append(obj).AppendLine();
+            Writer.AppendObjectPropertyPath(indexes).Append(name).Append(": ");
+            if (obj is float f)
+                Writer.Append(Vector3.FormatPrecise(f));
+            else if (obj is double d)
+                Writer.Append(Vector3.FormatPrecise(d));
+            else
+                Writer.Append(obj);
+            Writer.AppendLine();
 
             return obj;
         }

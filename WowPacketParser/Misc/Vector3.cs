@@ -1,4 +1,5 @@
 using System;
+using System.Globalization;
 
 namespace WowPacketParser.Misc
 {
@@ -62,7 +63,25 @@ namespace WowPacketParser.Misc
 
         public override string ToString()
         {
-            return "X: " + X + " Y: " + Y + " Z: " + Z;
+            return string.Format("X: {0} Y: {1} Z: {2}", FormatPrecise(X), FormatPrecise(Y), FormatPrecise(Z));
+        }
+
+        // Prints a float with up to 20 characters, without rounding. Non finite values
+        // (NaN, infinity) have no such digits and are printed as is.
+        public static string FormatPrecise(float value)
+        {
+            if (!float.IsFinite(value))
+                return value.ToString(CultureInfo.InvariantCulture);
+
+            return string.Format(CultureInfo.InvariantCulture, "{0:F20}", value).Substring(0, 20).TrimEnd('0').TrimEnd('.');
+        }
+
+        public static string FormatPrecise(double value)
+        {
+            if (!double.IsFinite(value))
+                return value.ToString(CultureInfo.InvariantCulture);
+
+            return string.Format(CultureInfo.InvariantCulture, "{0:F20}", value).Substring(0, 20).TrimEnd('0').TrimEnd('.');
         }
 
         public bool Equals(Vector3 other)
