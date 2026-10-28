@@ -1155,6 +1155,7 @@ namespace WowPacketParser.Enums
         V1_60_1_69893 = 69893, // beta
         V1_60_1_69913 = 69913, // beta
         V1_60_1_69977 = 69977, // beta
+        V1_15_9_70003 = 70003, // 1.15.9 (shares the 2.5.6 opcode numbering)
         V1_60_1_70009 = 70009, // beta
         V1_60_1_70058 = 70058, // beta
         V1_60_1_70094 = 70094, // beta (china only)
